@@ -7,7 +7,7 @@ local L = ns.L
 local MANA  = (Enum and Enum.PowerType and Enum.PowerType.Mana) or 0
 local floor = math.floor
 
-ns.ICON = "Interface\\Icons\\INV_Potion_76"
+ns.ICON = "Interface\\AddOns\\RemainingCastCount\\Art\\Logo-Icon"
 
 ns.defaults = {
     enabled      = true,

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1 (2026-10-11)
+
+- New addon icon (a mana drop with a count) in the addon list, the addon compartment and on
+  the minimap button.
+- Screenshots in the README.
+
 ## 1.0.0 (2026-10-11)
 
 - First release on GitHub.

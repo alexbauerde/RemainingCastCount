@@ -7,10 +7,10 @@
 ## Version: @project-version@
 ## X-Website: https://github.com/alexbauerde/RemainingCastCount
 # Once the projects exist, uncomment these so the release workflow uploads there too:
-# ## X-Curse-Project-ID: 000000
+## X-Curse-Project-ID: 1740030
 # ## X-Wago-ID: xxxxxxxx
 ## SavedVariables: RemainingCastCountDB
-## IconTexture: Interface\Icons\INV_Potion_76
+## IconTexture: Interface\AddOns\RemainingCastCount\Art\Logo-Icon
 ## AddonCompartmentFunc: RemainingCastCount_OnAddonCompartmentClick
 ## AddonCompartmentFuncOnEnter: RemainingCastCount_OnAddonCompartmentEnter
 ## AddonCompartmentFuncOnLeave: RemainingCastCount_OnAddonCompartmentLeave

@@ -1,6 +1,10 @@
+<p align="center"><img src="docs/logo.png" width="160" alt="RemainingCastCount logo: a mana drop on an action button with a 3 in the corner"></p>
+
 # RemainingCastCount
 
 Shows on your action buttons how many times you can still cast each spell with your current mana. Requires WoW: Forever (interface 16001).
+
+<img src="docs/screenshots/action-buttons.png" alt="Two action buttons: Lightning Bolt shows 15 casts left, Earth Shock shows 7">
 
 ## Download
 
@@ -12,9 +16,14 @@ Shows on your action buttons how many times you can still cast each spell with y
 - Warning colors: 0 in red, 1–2 in yellow (can be turned off).
 - Works with the Blizzard action bars and with LibActionButton bars (Bartender, ElvUI and others).
 - Turn the number off for single spells, or for single spell ranks.
+- Threshold per spell: the number only shows once it is at or below the value you set.
 - Font size and color, and drag the number to where it should sit on the button.
 - Minimap button and addon compartment entry.
 - English and German.
+
+## Settings
+
+<img src="docs/screenshots/settings.png" width="560" alt="The settings page: general options, a preview button to drag the number into place, font color, and the spell list with a threshold field and the mana cost per spell">
 
 ## Usage
 
