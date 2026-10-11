@@ -1,0 +1,51 @@
+name: Tag
+
+# A push to main whose CHANGELOG.md tops out with a new "## X.Y.Z (date)" section tags that
+# commit vX.Y.Z and starts the Release workflow on the tag. A tag pushed with the workflow's own
+# token starts no workflows, so Release is started by hand-off (workflow_dispatch), the one event
+# that token may trigger.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - CHANGELOG.md
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Version from CHANGELOG.md
+        id: version
+        run: |
+          version=$(awk '/^## [0-9]+\.[0-9]+\.[0-9]+( |$)/ { print $2; exit }' CHANGELOG.md)
+          [ -n "$version" ] || { echo "No '## X.Y.Z' section in CHANGELOG.md: nothing to tag"; exit 0; }
+          if git rev-parse -q --verify "refs/tags/v$version" > /dev/null; then
+            echo "v$version is already tagged: nothing to do"
+            exit 0
+          fi
+          echo "tag=v$version" >> "$GITHUB_OUTPUT"
+      # Broken code shouldn't go out just because the changelog says so.
+      - name: Luacheck
+        if: steps.version.outputs.tag
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lua-check
+          luacheck . --no-color
+      - name: Tag and start the release
+        if: steps.version.outputs.tag
+        env:
+          TAG: ${{ steps.version.outputs.tag }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git tag "$TAG"
+          git push origin "$TAG"
+          gh workflow run release.yml --ref "$TAG"
+          echo "Tagged $TAG and started the Release workflow"

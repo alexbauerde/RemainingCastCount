@@ -1,0 +1,33 @@
+name: Bug report
+description: Something in RemainingCastCount doesn't work.
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: RemainingCastCount version
+      description: Shown in the addon list on the character select screen.
+    validations:
+      required: true
+  - type: input
+    id: ui
+    attributes:
+      label: Action bar addon
+      description: Blizzard bars, Bartender, ElvUI, Dominos, …
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to make it happen
+      description: Which spell, which bar, in combat or out?
+  - type: textarea
+    id: errors
+    attributes:
+      label: Lua errors or /rcc debug output
+      description: The error text (from BugSack, for example), or what /rcc debug prints.
+      render: text

@@ -1,0 +1,15 @@
+*.swp
+.DS_Store
+Thumbs.db
+
+# Libraries: the packager would pull them via .pkgmeta externals (local copies for testing only)
+Libs/
+
+# Release artefacts: the workflow writes the notes; the packager builds into .release/ when run locally
+RELEASE_NOTES.md
+.release/
+*.zip
+
+# Editors
+.vscode/
+.idea/

@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  # A release tag pushed by hand
+  push:
+    tags:
+      - "v*"
+  # Started by the Tag workflow on the tag it just made; also runnable by hand on a tag
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      # The release notes (GitHub release body and CurseForge changelog) are the tag's own
+      # "## X.Y.Z (date)" section of CHANGELOG.md only. Any tag other than vX.Y.Z stops the run
+      # here, before anything is uploaded.
+      - name: Release notes
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          if [[ ! "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Not a release tag (vX.Y.Z): $GITHUB_REF_NAME" >&2
+            exit 1
+          fi
+          awk -v v="$version" '/^## /{f = ($2 == v)} f' CHANGELOG.md > RELEASE_NOTES.md
+          [ -s RELEASE_NOTES.md ] || { echo "CHANGELOG.md has no '## $version' section" >&2; exit 1; }
+          printf '\nEarlier versions: [CHANGELOG.md](https://github.com/%s/blob/%s/CHANGELOG.md)\n' \
+            "$GITHUB_REPOSITORY" "$GITHUB_REF_NAME" >> RELEASE_NOTES.md
+      # Builds the zip and attaches it to a GitHub release. CurseForge and Wago are uploaded to
+      # only once their secrets are set and the TOC has ## X-Curse-Project-ID / ## X-Wago-ID;
+      # without them the packager skips those sites. If a CurseForge project is added, turn off
+      # its own "Automatic Packaging", or every release gets two files there.
+      - name: Package and release
+        uses: BigWigsMods/packager@v2
+        env:
+          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+          CF_API_KEY: ${{ secrets.CF_API_KEY }}
+          WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}

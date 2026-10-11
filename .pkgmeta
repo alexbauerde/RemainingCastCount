@@ -1,0 +1,10 @@
+package-as: RemainingCastCount
+enable-nolib-creation: no
+# written by the release workflow from CHANGELOG.md: this version's section only
+manual-changelog: RELEASE_NOTES.md
+
+ignore:
+  - CHANGELOG.md
+  - RELEASE_NOTES.md
+  - README.md
+  - docs

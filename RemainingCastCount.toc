@@ -1,0 +1,20 @@
+## Interface: 16001
+# The Title must equal the folder and saved-variables name: the packager zips the addon as RemainingCastCount
+## Title: RemainingCastCount
+## Notes: Shows on your spells how many times you can still cast them with your current mana. /rcc
+## Notes-deDE: Zeigt an deinen Zaubern, wie oft du sie mit deinem aktuellen Mana noch wirken kannst. /rcc
+## Author: Alex
+## Version: @project-version@
+## X-Website: https://github.com/alexbauerde/RemainingCastCount
+# Once the projects exist, uncomment these so the release workflow uploads there too:
+# ## X-Curse-Project-ID: 000000
+# ## X-Wago-ID: xxxxxxxx
+## SavedVariables: RemainingCastCountDB
+## IconTexture: Interface\Icons\INV_Potion_76
+## AddonCompartmentFunc: RemainingCastCount_OnAddonCompartmentClick
+## AddonCompartmentFuncOnEnter: RemainingCastCount_OnAddonCompartmentEnter
+## AddonCompartmentFuncOnLeave: RemainingCastCount_OnAddonCompartmentLeave
+
+Locales.lua
+Core.lua
+Options.lua
