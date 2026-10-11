@@ -30,6 +30,10 @@ Shows on your action buttons how many times you can still cast each spell with y
 - `/rcc` opens the settings.
 - `/rcc debug` prints what the addon sees on your buttons (helpful in bug reports).
 
+## Why this addon
+
+Back in WoW Season of Mastery I played a Frost Mage and used an addon that did exactly this: show how many casts my mana had left. I couldn't find it anymore, so with my background in software development (web and SAP development) I built it again for myself, together with Claude. My version goes further than the old one: you can style the number (size, color, position on the button), switch it on or off per spell, and set a threshold per spell so it only shows when it matters. I didn't want to keep it to myself, so here it is for anyone who also likes such infos.
+
 ## Bugs and ideas
 
 [Open an issue](https://github.com/alexbauerde/RemainingCastCount/issues).
